@@ -10,20 +10,22 @@ export default function KanyeRest(){
     
     
      useEffect(()=>{
-        const fetchData = fetch("https://api.kanye.rest/")
+        const fetchData = fetch("http://localhost:8080/CA3/api/person/1")
     .then((res) => res.json())
     .then((data) =>  setData(data))
     .catch((err) => console.log("fejl"))
-    console.log(data)
-      }, []);      
+    console.log(fetchData)
+      }, []) ;      
     
 
+
+      
     
     return (
         <div className="container">
           <div  className="jumbotron">
             <h1 className="display-4 text-primary">Kanye Quote</h1>
-            <p  className="font-weight-bold">{data.quote}</p>
+            <p  className="font-weight-bold">{data.Person}</p>
           </div>
         </div>
       );

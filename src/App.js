@@ -5,6 +5,7 @@ import {
   Route,
   Link,
   NavLink,
+  Redirect ,
 } from "react-router-dom";
 import "./style.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -13,6 +14,7 @@ import CatFact from "./CatFact";
 import Pokemon from "./Pokemon";
 import UselessFact from "./UselessFact";
 import KanyeRest from "./KanyeRest";
+import Person from "./person"; 
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -35,30 +37,33 @@ export default function App() {
           </li>
           {loggedIn && (
             <React.Fragment>
-            <li>
-              <NavLink exact activeClassName="active" to="/catfacts">
-                CatFact
-              </NavLink>
-            </li>
-            <li>
-              <NavLink exact activeClassName="active" to="/pokemon">
-                Pokemon
-              </NavLink>
-            </li>
-            <li>
-              <NavLink exact activeClassName="active" to="/uselessfact">
-                UselessFact
-              </NavLink>
-            </li>
-  
+              <li>
+                <NavLink exact activeClassName="active" to="/catfacts">
+                  CatFact
+                </NavLink>
+              </li>
+              <li>
+                <NavLink exact activeClassName="active" to="/pokemon">
+                  Pokemon
+                </NavLink>
+              </li>
+              <li>
+                <NavLink exact activeClassName="active" to="/uselessfact">
+                  UselessFact
+                </NavLink>
+              </li>
             </React.Fragment>
-            
           )}
-          
-         
+
           <li>
             <NavLink exact activeClassName="active" to="/kanyerest">
               KanyeRest
+            </NavLink>
+          </li>
+          
+          <li>
+            <NavLink exact activeClassName="active" to="/person">
+              Person
             </NavLink>
           </li>
           <li>
@@ -94,6 +99,9 @@ export default function App() {
             <Route path="/kanyerest">
               <KanyeRest />
             </Route>
+            <Route path="/person">
+              <Person />
+            </Route>
             <Route exact path="/login">
               {!loggedIn ? (
                 <LogIn login={login} />
@@ -116,14 +124,34 @@ function Home() {
   return (
     <div>
       <div className="container">
-      <h2>Hello World</h2>
-      <h3>Please login to see our  awesome stuff</h3>
+        <h2>Hello World</h2>
+        <h3>Please login to see our awesome stuff</h3>
+
+        <form>
+          <label>
+            ID:
+            <input type="text" name="name" id="IDinput" />
+          </label>
+          <input type="submit" value="Submit" onClick={click} />
+        </form>
       </div>
-      
-      
     </div>
   );
 }
+
+export let id; 
+
+function click (e) { 
+  const { history } = this.props;
+  e.preventDefault()
+  console.log("hej")
+ id = document.getElementById("IDinput").value
+history.push('/person')
+
+
+}
+
+
 
 function LogIn({ login }) {
   const init = { username: "", password: "" };
